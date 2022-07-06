@@ -1,0 +1,80 @@
+{% extends 'bookapp/admin/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+  
+  .bookimg{
+    height: 80px;
+    width: 80;
+  }
+
+  td,th{
+    font-size: 12;
+  }
+
+  .fotie{
+    font-size: 12;
+  }
+
+  .logo{
+    height: 60px;
+    width: 60px;
+    align-content: center;
+  }
+
+</style>
+
+
+
+  <!-- Begin Page Content -->
+  <div class="container-fluid bg-dark">
+
+      <!-- Topbar -->
+  {% include 'bookapp/admin/topnav.html' %}
+  <!-- End of Topbar -->
+
+    {% include 'bookapp/logo.html' %}
+
+   {% include 'bookapp/admin/reports.html' %}
+    <!-- Begin Page Content -->
+    <div class="row">
+      <div class="col-lg-12">
+         <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Availabe Books</h6>
+            </div>
+            {% include 'bookapp/admin/messages.html' %}
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  {% if msg %}
+                    {% for messages in msg %}
+                      <div class="card">
+                          <h3 style="color: green" class="text">{{ messages.name }}</h3>
+                      <p class="text-white bg-primary pt-3 pb-3">{{ messages.message  }} <br> {{ messages.posted_at  }} </p>
+                      <hr>
+
+                      </div>
+                    {% endfor %}
+                  {% else %}
+                    <h1 class="text-center">No Uploaded Books yet</h1>
+                  {% endif %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      </div>
+
+    <!-- /.container-fluid -->
+  </div>
+{% include 'bookapp/admin/footer.html' %}
+
+
+{% endblock content %}

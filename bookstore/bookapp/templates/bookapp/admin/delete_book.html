@@ -1,0 +1,52 @@
+{% extends 'bookapp/admin/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+  <!-- Topbar -->
+  {% include 'bookapp/admin/topnav.html' %}
+  <!-- End of Topbar -->
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-12 bg-primary">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4"> YCI Add Book</h1>
+              </div>
+              {% include 'bookapp/admin/messages.html' %}
+
+              <h1 class="text-white">Are you sure you want to delete "{{item}}"?</h1><br />
+              <form class="user"  method="POST" action="">
+                <div class="form-group row">
+                    {% csrf_token %}
+
+                  <div class="col-lg-12">
+
+                    <a class="btn btn-warning btn-user btn-block"href="{% url 'bookapp:dashboardpage' %}">Cancel</a><br />
+                    
+                  </div>
+
+                   <div class="col-lg-12 mb-3 mb-sm-0">
+                    <input class="btn btn-success btn-user btn-block" type="submit" name="Confirm">
+                  </div>
+
+
+                </div>
+              </form>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% include 'bookapp/admin/footer.html' %}
+
+{% endblock content %}

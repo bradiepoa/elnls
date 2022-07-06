@@ -1,0 +1,46 @@
+ <!-- Content Row -->
+       <div class="row">
+          <div class="col-lg-3 mb-4">
+            <div class="card bg-primary text-white shadow">
+              <div class="card-body">
+                <a class="text-white" href="{% url 'bookapp:Bkcategorypage' %}">Total Category</a>
+                <div class="text-white-50 small">{{ category }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4">
+            <div class="card bg-success text-white shadow">
+              <div class="card-body">
+                <a class="text-white" href="">Total Books</a>
+                
+                <div class="text-white-50 small">{{ totalbks }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4">
+            <div class="card bg-info text-white shadow">
+              <div class="card-body">
+                <a class="text-white" href="">Total PDF</a>
+                <div class="text-white-50 small">{{ totalpdf }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4">
+            <div class="card bg-warning text-white shadow">
+              <div class="card-body">
+                <a class="text-white" href="">Reserved books</a>
+                
+                <div class="text-white-50 small">{{ totalreserved }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 mb-4">
+            <div class="card bg-danger text-white shadow">
+              <div class="card-body">
+                Danger
+                <div class="text-white-50 small">#e74a3b</div>
+              </div>
+            </div>
+          </div>          
+      </div>
+    <!-- Content Row -->

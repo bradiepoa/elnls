@@ -1,0 +1,155 @@
+{% extends 'bookapp/students/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+  
+  .bookimg{
+    height: 80px;
+    width: 80;
+  }
+
+  td,th{
+    font-size: 12;
+  }
+
+  .fotie{
+    font-size: 12;
+  }
+
+  .logo{
+    height: 60px;
+    width: 60px;
+    align-content: center;
+  }
+
+</style>
+
+
+
+  <!-- Begin Page Content -->
+  <div class="container-fluid bg-primary">
+
+      <!-- Topbar -->
+  {% include 'bookapp/students/topnav.html' %}
+  <!-- End of Topbar -->
+
+    {% include 'bookapp/logo.html' %}
+
+    <!-- Content Row -->
+       <div class="row">
+          <div class="col-lg-3 mb-4">
+            <div class="card bg-primary text-white shadow">
+              <div class="card-body">
+                <a class="text-white fotie" href="{% url 'bookapp:Bkcategorypage' %}">Total Category</a>
+                <div class="text-white-50 small">{{ category }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4">
+            <div class="card bg-success text-white shadow">
+              <div class="card-body">
+                <a class="text-white fotie" href="">Total Books</a>
+                
+                <div class="text-white-50 small">{{ totalbks }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4">
+            <div class="card bg-info text-white shadow">
+              <div class="card-body">
+                <a class="text-white fotie" href="">Total PDF</a>
+                <div class="text-white-50 small">{{ totalpdf }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4">
+            <div class="card bg-warning text-white shadow">
+              <div class="card-body">
+                <a class="text-white fotie" href="">Reserved books</a>
+                
+                <div class="text-white-50 small">{{ totalreserved }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 mb-4">
+            <div class="card bg-danger text-white shadow">
+              <div class="card-body">
+                Danger
+                <div class="text-white-50 small">#e74a3b</div>
+              </div>
+            </div>
+          </div>          
+      </div>
+    <!-- Content Row -->
+
+    <!-- Begin Page Content -->
+    <div class="row">
+      <div class="col-lg-12">
+         <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Availabe Books</h6>
+            </div>
+            {% include 'bookapp/students/messages.html' %}
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-sm table-hover" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      
+                      <th style="text-align: center; color: blue;">Book Cover</th>
+                      <th style="text-align: center; color: blue;">Book Title</th>
+                      <th style="text-align: center; color: blue;">Category</th>
+                      <th style="text-align: center; color: blue;">Author</th>
+                      <th style="text-align: center; color: blue;">Year</th> 
+                      <th style="text-align: center; color: red;" colspan="2">Action</th>             
+                  </thead>
+                  <tbody>
+                    {% if booklst %}
+                      {% for bookitem in booklst %}
+                      <tr>
+                         
+                        <td><img class="bookimg" src="{{ bookitem.imageURL }}"></td>
+                        <td>{{ bookitem.Title }}</td>
+                        <td>{{ bookitem.Category }}</td>
+                        <td>{{ bookitem.Author  }}</td>
+                        <td>{{ bookitem.Year_Published }}</td>
+                        <td>
+                          {% if bookitem.pdf %}
+
+                            <a style="height: 80px;"  href="{{ bookitem.pdf.url }}" download class="btn btn-success btn-circle"> <i class="fa fa-download fa-sm" aria-hidden="true"></i></a>
+                          {% else %}
+                            <span class="text-muted">No PDF</span>
+                          {% endif %}
+
+                        </td>
+                        <td>
+                          {% if bookitem.pdf %}
+                            
+                            <a style="height: 80px;" href="{{ bookitem.pdf.url }}" class="btn btn-info btn-circle" target="_blank"> <i class="fas fa-book-reader fa-sm"></i></a>
+                            {% else %}
+                            <span class="text-muted"></span>
+                          {% endif %} 
+                        </td>                   
+                      {% endfor %}
+                    {% else %}
+                    <h1 class="text-center">No Uploaded Books yet</h1>
+                    {% endif %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      </div>
+
+    <!-- /.container-fluid -->
+  </div>
+{% include 'bookapp/students/footer.html' %}
+
+
+{% endblock content %}

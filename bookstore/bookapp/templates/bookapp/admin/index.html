@@ -1,0 +1,99 @@
+{% extends 'bookapp/admin/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+  
+  .bookimg{
+    height: 100px;
+    width: 100px;
+  }
+
+  td,th{
+    font-size: 12;
+  }
+
+  .fotie{
+    font-size: 12;
+  }
+
+  .logo{
+    height: 60px;
+    width: 60px;
+    align-content: center;
+  }
+
+</style>
+
+
+
+  <!-- Begin Page Content -->
+  <div class="container-fluid bg-dark">
+
+      <!-- Topbar -->
+  {% include 'bookapp/admin/topnav.html' %}
+  <!-- End of Topbar -->
+
+    {% include 'bookapp/logo.html' %}
+
+   {% include 'bookapp/admin/reports.html' %}
+
+    <!-- Begin Page Content -->
+    <div class="row">
+      <div class="col-lg-12">
+         <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Availabe Books</h6>
+            </div>
+            {% include 'bookapp/admin/messages.html' %}
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-sm table-hover" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th style="text-align: center; color: red;" colspan="2">Action</th>
+                      <th style="text-align: center; color: blue;">Book Cover</th>
+                      <th style="text-align: center; color: blue;">Book Title</th>
+                      <th style="text-align: center; color: blue;">Category</th>
+                      <th style="text-align: center; color: blue;">Author</th>
+                       <th style="text-align: center; color: blue;">ISBN</th>
+                      <th style="text-align: center; color: blue;">Year</th>
+                      <th style="text-align: center; color: blue;">Publisher</th>
+                      <th style="text-align: center; color: blue;">Status</th>                
+                  </thead>
+                  <tbody>
+                    {% if booklst %}
+                      {% for bookitem in booklst %}
+                      <tr>
+                         <td style="background-color: #889;"><a href="{% url 'bookapp:updatebook' bookitem.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-edit"></i></a></td>
+                        <td style="background-color: #900;"><a href="{% url 'bookapp:delete_book' bookitem.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash"></i></a></td>
+                        <td><img class="bookimg" src="{{ bookitem.imageURL }}"></td>
+                        <td>{{ bookitem.Title }}</td>
+                        <td>{{ bookitem.Category }}</td>
+                        <td>{{ bookitem.Author  }}</td>
+                        <td>{{ bookitem.isbn  }}</td>
+                        <td>{{ bookitem.Year_Published }}</td>
+                        <td>{{ bookitem.Publisher }}</td>
+                        <td>{{ bookitem.Status }}</td>                      
+                      {% endfor %}
+                    {% else %}
+                    <h1 class="text-center">No Uploaded Books yet</h1>
+                    {% endif %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      </div>
+
+    <!-- /.container-fluid -->
+  </div>
+{% include 'bookapp/admin/footer.html' %}
+
+
+{% endblock content %}
